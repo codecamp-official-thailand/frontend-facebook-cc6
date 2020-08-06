@@ -20,7 +20,7 @@ const components = {
         page: FriendListPage
     },
     login: {
-        url: "/login",
+        url: "/",
         page: LoginPage
     },
     profile: {

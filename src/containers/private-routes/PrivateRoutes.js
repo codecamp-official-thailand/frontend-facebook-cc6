@@ -1,0 +1,25 @@
+import React from 'react';
+import routeConfig from '../../config/routes';
+import { Switch, Route } from 'react-router-dom';
+import NotFoundPage from "../pages/NotFound";
+
+function PrivateRoutes(props) {
+    const role = props.role || "guest";
+
+    const allowedRoutes = routeConfig[role];
+
+    return (
+        <div>
+            <Switch>
+                {allowedRoutes.map(route => (
+                    <Route key={route.url} exact path={route.url}>
+                        <route.page />
+                    </Route>
+                ))}
+                <Route component={NotFoundPage} />
+            </Switch>
+        </div>
+    );
+}
+
+export default PrivateRoutes;

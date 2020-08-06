@@ -15,17 +15,13 @@ const components = {
         url: "/",
         page: FeedPage
     },
-    friendslist: {
+    friendsList: {
         url: "/friends-list",
         page: FriendListPage
     },
     login: {
         url: "/login",
         page: LoginPage
-    },
-    notFound: {
-        url: "/not-found",
-        page: NotFoundPage
     },
     profile: {
         url: "/profile/:id",
@@ -46,7 +42,6 @@ export default {
         components.feed,
         components.profile,
         components.changePassword,
-        components.friendslist
+        components.friendsList
     ],
-    notFound: components.notFound,
 };

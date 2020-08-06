@@ -1,6 +1,7 @@
 import React from "react";
-import { Row, Col, Form, Input, Button } from "antd";
+import { Row, Col, Form, Input, Button, notification } from "antd";
 import { Link } from "react-router-dom";
+import axios from "../../config/axios";
 
 const formItemLayout = {
     labelCol: { span: 24 },
@@ -8,8 +9,18 @@ const formItemLayout = {
 };
 
 function Login() {
-    function onFinish(values) {
-        console.log(values);
+    function onFinish({ username, password }) {
+        axios.post("/users/login", { username, password })
+            .then(res => {
+                notification.success({
+                    message: "เข้าสู่ระบบสำเร็จแล้ว"
+                });
+            })
+            .catch(err => {
+                notification.error({
+                    message: err.response?.data?.message || "เข้าสู่ระบบล้มเหลว"
+                });
+            });
     }
 
     return (

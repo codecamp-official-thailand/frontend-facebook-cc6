@@ -1,14 +1,34 @@
 import React from 'react';
-import { Row, Col, Form, Input, Button } from 'antd';
+import { Row, Col, Form, Input, Button, notification } from 'antd';
+import axios from '../../config/axios';
+import { withRouter } from 'react-router-dom';
 
 const formLayout = {
     labelCol: { xs: 24, sm: 24, md: 5, lg: 7, xl: 7 },
     wrapperCol: { xs: 24, sm: 24, md: 19, lg: 17, xl: 17 },
 };
 
-function SignUp() {
-    const onFinish = (values) => {
-        console.log(values);
+function SignUp(props) {
+
+
+    const onFinish = async (values) => {
+        try {
+            await axios.post("/users/register", {
+                username: values.username,
+                password: values.password,
+                name: values.fullname,
+                image_url: ""
+            });
+
+            props.history.push("/");
+            notification.success({
+                message: "สมัครสำเร็จ"
+            });
+        } catch (error) {
+            notification.error({
+                message: error.response?.data?.message || "มีบางอย่างผิดพลาด"
+            });
+        }
     };
 
     return (
@@ -78,4 +98,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default withRouter(SignUp);

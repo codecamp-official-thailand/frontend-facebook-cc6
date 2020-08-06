@@ -9,16 +9,14 @@ function PrivateRoutes(props) {
     const allowedRoutes = routeConfig[role];
 
     return (
-        <div>
-            <Switch>
-                {allowedRoutes.map(route => (
-                    <Route key={route.url} exact path={route.url}>
-                        <route.page />
-                    </Route>
-                ))}
-                <Route component={NotFoundPage} />
-            </Switch>
-        </div>
+        <Switch>
+            {allowedRoutes.map(route => (
+                <Route key={route.url} exact path={route.url}>
+                    <route.page />
+                </Route>
+            ))}
+            <Route component={NotFoundPage} />
+        </Switch>
     );
 }
 

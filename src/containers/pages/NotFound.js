@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Empty, Row } from 'antd';
 
 function NotFound() {
     return (
-        <div>
-            Not found page
-        </div>
-    )
+        <Row style={{ height: "100%" }} justify="center" align="middle">
+            <Empty description={"404: Page Not Found"} />
+        </Row>
+    );
 }
 
-export default NotFound
+export default NotFound;

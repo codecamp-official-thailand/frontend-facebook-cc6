@@ -2,16 +2,19 @@ import React from "react";
 import { Row, Col, Form, Input, Button, notification } from "antd";
 import { Link } from "react-router-dom";
 import axios from "../../config/axios";
+import LocalStorageService from '../../services/LocalStorage';
 
 const formItemLayout = {
     labelCol: { span: 24 },
     wrapperCol: { span: 24 },
 };
 
-function Login() {
+function Login(props) {
     function onFinish({ username, password }) {
         axios.post("/users/login", { username, password })
             .then(res => {
+                LocalStorageService.setToken(res.data.accessToken);
+                props.setRole("user");
                 notification.success({
                     message: "เข้าสู่ระบบสำเร็จแล้ว"
                 });

@@ -12,7 +12,7 @@ function PrivateRoutes(props) {
         <Switch>
             {allowedRoutes.map(route => (
                 <Route key={route.url} exact path={route.url}>
-                    <route.page />
+                    <route.page setRole={props.setRole} />
                 </Route>
             ))}
             <Route component={NotFoundPage} />
